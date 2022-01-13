@@ -5,6 +5,18 @@ var db =  require('./database')
 
 app.use(bodyParser.json());
 
+var dados ={
+    nome:'victor',
+    cpf:123456
+}
+
+db.insert(dados).into("users").then((res) => {
+    console.log(res);
+}).catch( err =>{
+    console.log(err);
+})
+
+
 app.get('/', (req, res) => {
     console.log("chamou api home");
     res.send('pagina home');
