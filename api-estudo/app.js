@@ -1,18 +1,19 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var db =  require('./database')
+const knexfile =  require('./knexfile')
+const knex = require('knex')(knexfile.development)
+
 
 app.use(bodyParser.json());
 
-var dados ={
-    nome:'victor',
-    cpf:123456
+var dados = {
+    username:'josé',
 }
 
-db.insert(dados).into("users").then((res) => {
+knex.insert(dados).into("teste").then((res) => {
     console.log(res);
-}).catch( err =>{
+}).catch( (err) => {
     console.log(err);
 })
 
