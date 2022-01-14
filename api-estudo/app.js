@@ -26,8 +26,8 @@ app.post("/users", (req, res) => {
   var name = req.body.name;
   var response_message;
   var dados = {
-    username: name,
-    cpf: req.body.email,
+    name: name,
+    cpf: req.body.cpf,
   };
 
   knex
@@ -39,6 +39,7 @@ app.post("/users", (req, res) => {
     })
     .catch((err) => {
       console.log(err);
+      response_message = `Deu não ${err} .`;
     });
 
   res.send(response_message);
