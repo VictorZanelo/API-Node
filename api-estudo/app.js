@@ -8,7 +8,7 @@ const knex = require('knex')(knexfile.development)
 app.use(bodyParser.json());
 
 var dados = {
-    username:'josé',
+    username:'josé ',
 }
 
 knex.insert(dados).into("teste").then((res) => {
