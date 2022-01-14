@@ -1,55 +1,55 @@
-var express = require('express');
+var express = require("express");
 var app = express();
-var bodyParser = require('body-parser');
-const knexfile =  require('./knexfile')
-const knex = require('knex')(knexfile.development)
-
+var bodyParser = require("body-parser");
+const knexfile = require("./knexfile");
+const knex = require("knex")(knexfile.development);
 
 app.use(bodyParser.json());
 
-var dados = {
-    username:'josé ',
-}
-
-knex.insert(dados).into("teste").then((res) => {
-    console.log(res);
-}).catch( (err) => {
-    console.log(err);
-})
-
-
-app.get('/', (req, res) => {
-    console.log("chamou api home");
-    res.send('pagina home');
+app.get("/", (req, res) => {
+  console.log("chamou api home");
+  res.send("pagina home");
 });
 
-app.get('/contacts', (req, res) => {
-    console.log('chamou api contacts');
-    res.send('pagina contacts');
+app.get("/contacts", (req, res) => {
+  console.log("chamou api contacts");
+  res.send("pagina contacts");
 });
 
-app.get('/search', (req, res) => {
-    var cpf = req.query.cpf;
+app.get("/search", (req, res) => {
+  var cpf = req.query.cpf;
 
-    res.send(`cpf igual a ${cpf}`)
-})
+  res.send(`cpf igual a ${cpf}`);
+});
 
-app.post('/contacts', (req, res) => {
-    var name = req.body.name;
-    var email = req.body.email;
-    var message = req.body.message;
+app.post("/users", (req, res) => {
+  var name = req.body.name;
+  var response_message;
+  var dados = {
+    username: name,
+    cpf: req.body.email,
+  };
 
-    var response_message = `Obrigado ${name} pela mensagem.`;
+  knex
+    .insert(dados)
+    .into("users")
+    .then((res) => {
+      console.log(res);
+      response_message = `Obrigado ${name} pela mensagem.`;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
-    res.send(response_message);
-})
+  res.send(response_message);
+});
 
-app.post('/users/:id', (req, res) => {
-    var id = req.params.id;
+/* app.post("/users/:id", (req, res) => {
+  var id = req.params.id;
 
-    res.send(`param = ${id}`);
-})
+  res.send(`param = ${id}`);
+}); */
 
-app.listen(3000, () =>{
-    console.log("servidor na porta 3000");
+app.listen(3000, () => {
+  console.log("servidor na porta 3000");
 });
