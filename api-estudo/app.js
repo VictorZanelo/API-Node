@@ -44,6 +44,23 @@ app.post("/users", (req, res) => {
   
 });
 
+app.put("/users/:id", (req, res) => {
+  var id = req.params.id;
+  var new_cpf = req.body.cpf;
+  knex.update({cpf: new_cpf}).where({id : id}).table("users").then(data => {
+   
+
+    console.log(  data);
+    res.send('Atualizado com sucesso')
+    res.status(200)
+    
+  }).catch(err =>{
+    console.log(err);
+    res.send('falha ao atualizar')
+  })
+
+ 
+});
 app.get("/users/:id", (req, res) => {
   var id = req.params.id;
 
