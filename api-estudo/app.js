@@ -90,6 +90,15 @@ app.delete("/users/:id", (req, res) => {
  
 });
 
+knex.select().table("users").orderBy('name','asc').then((res) => {
+  
+  res.forEach(element =>{
+    console.log(element.name);
+  })
+}).catch((err) => {
+  console.log(err);
+})
+
 app.listen(3000, () => {
   console.log("servidor na porta 3000");
 });
