@@ -44,11 +44,21 @@ app.post("/users", (req, res) => {
   
 });
 
-/* app.post("/users/:id", (req, res) => {
+app.get("/users/:id", (req, res) => {
   var id = req.params.id;
 
-  res.send(`param = ${id}`);
-}); */
+  knex.select().where({id : id}).table("users").then(data => {
+  data.forEach(dados => {
+      console.log(dados.name);
+      res.send(JSON.stringify(dados.cpf));
+    }); 
+    
+  }).catch(err =>{
+    console.log(err);
+  })
+
+ 
+});
 
 app.listen(3000, () => {
   console.log("servidor na porta 3000");
