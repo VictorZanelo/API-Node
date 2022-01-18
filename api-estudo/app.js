@@ -30,19 +30,18 @@ app.post("/users", (req, res) => {
     cpf: req.body.cpf,
   };
 
-  knex
-    .insert(dados)
-    .into("users")
-    .then((res) => {
-      console.log(res);
+  knex.insert(dados).into("users").then((response) => {
+      console.log(response);
       response_message = `Obrigado ${name} pela mensagem.`;
+      res.send(response_message);
     })
     .catch((err) => {
       console.log(err);
       response_message = `Deu não ${err} .`;
+      res.send(response_message);
     });
 
-  res.send(response_message);
+  
 });
 
 /* app.post("/users/:id", (req, res) => {
