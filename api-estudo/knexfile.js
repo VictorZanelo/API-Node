@@ -5,11 +5,11 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-      host : 'ec2-3-216-113-109.compute-1.amazonaws.com',
+      host : 'ec2-18-235-114-62.compute-1.amazonaws.com',
       port : 5432,
-      user : 'pxemfkzluyyojr',
-      password : 'bb75c57c6cec74acf5f2bbbf0d133f6b267d3b4c0988ffc5e6b7804227e50335',
-      database : 'd3o893ssceu8k1',
+      user : 'udwuuofripzwso',
+      password : 'adbbee64a3011740bcf0655e86d43e9ef7912eca9265896ff3a1619b02d7b507',
+      database : 'd1hdqcp28i293g',
       ssl: {
         rejectUnauthorized: false,
     }
